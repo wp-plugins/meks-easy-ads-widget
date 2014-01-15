@@ -4,7 +4,7 @@ Donate link: http://mekshq.com/
 Tags: ad, ads, affiliate, niche, advertising, advertisement, marketing, sidebar, widget
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -35,6 +35,9 @@ This plugin is created by <a href="http://mekshq.com" target="_blank">MeksHQ</a>
 For any questions, error reports and suggestions please email support@mekshq.com or visit http://mekshq.com
 
 == Changelog ==
+
+= 1.1 =
+* Minor CSS tweaks
 
 = 1.0 =
 * Initial release

@@ -1,9 +1,8 @@
 .mks_ads_widget .small li,
 .mks_ads_widget ul.custom li{
 	display: inline-block;
-	float: left;
-	margin-right: 20px;
-	margin-bottom: 20px;
+	margin-right: 3px;
+	margin-bottom: 0;
 }
 .mks_ads_widget ul.large img{
 	width: 300px;
