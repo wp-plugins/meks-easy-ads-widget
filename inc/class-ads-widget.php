@@ -183,6 +183,7 @@ class MKS_Ads_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_per_view' ); ?>"><?php _e('Number of Ads per view', 'meks'); ?>: </label>
 			<input id="<?php echo $this->get_field_id( 'num_per_view' ); ?>" type="text" name="<?php echo $this->get_field_name( 'num_per_view' ); ?>" value="<?php echo absint($instance['num_per_view']); ?>" class="small-text" />
+		  <small class="howto"><?php _e('Means how many ads to display per page load or slide', 'meks'); ?></small>
 		</p>
 		
 		
@@ -214,5 +215,12 @@ class MKS_Ads_Widget extends WP_Widget {
 	<?php
 	}
 }
+
+/* Load text domain */
+function mks_load_ads_widget_text_domain() {
+  load_plugin_textdomain( 'meks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action( 'plugins_loaded', 'mks_load_ads_widget_text_domain' );
 
 ?>

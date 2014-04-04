@@ -12,3 +12,8 @@
 	width: 125px;
 	height: 125px;
 }
+
+.mks_ads_widget ul li a{
+	padding: 0;
+	margin: 0;
+}
