@@ -66,6 +66,15 @@ class MKS_Ads_Widget extends WP_Widget {
 	     	?>
 	     <?php endforeach; ?>
 	    </ul>
+	    
+	    <?php 
+	    
+	    if(count($instance['ads']) % $instance['num_per_view']){
+	    	$show_ind++;
+	    }
+	    
+	    
+	    ?>
 	  
 	  <?php if($instance['rotate']) : 
 	   $widget_id = $this->id;
@@ -76,19 +85,27 @@ class MKS_Ads_Widget extends WP_Widget {
 			/* <![CDATA[ */
 			var <?php echo $li_ind; ?> = 0;
 			(function($) {
+			  
 			  $(document).ready(function(){
 			  	slide_ads_<?php echo $slide_func_id; ?>();
 			  });
-
+         
 			})(jQuery);
 			
 			function slide_ads_<?php echo str_replace("-","",$this->id); ?>(){
+				
 				jQuery("#<?php echo $widget_id; ?> ul li").hide();
 				jQuery("#<?php echo $widget_id; ?> ul li[data-showind='"+<?php echo $li_ind; ?>+"']").fadeIn(500);
 				<?php echo $li_ind; ?>++;
+				
 				if(<?php echo $li_ind; ?> > <?php echo ($show_ind - 1);?>){
 				 <?php echo $li_ind; ?> = 0;
 				}
+				
+				
+				
+				//alert(<?php echo $li_ind; ?>);
+				
 				
 			 	setTimeout('slide_ads_<?php echo $slide_func_id; ?>()', 5000);
 			}
