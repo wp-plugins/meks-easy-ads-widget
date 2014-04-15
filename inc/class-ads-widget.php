@@ -56,7 +56,7 @@ class MKS_Ads_Widget extends WP_Widget {
 			?>
 			
 			
-			<ul class="<?php echo $instance['size'];?>">
+			<ul class="mks_adswidget_ul <?php echo $instance['size'];?>">
 	     <?php foreach($instance['ads'] as $ind => $ad) : ?>
 	     	<li data-showind="<?php echo $show_ind; ?>"><a href="<?php echo $ad['link'];?>" target="_blank"><img src="<?php echo $ad['img'];?>" <?php echo $ad_size; ?>/></a></li>
 	     	<?php 

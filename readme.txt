@@ -4,7 +4,7 @@ Donate link: http://mekshq.com/
 Tags: ad, ads, affiliate, niche, advertising, advertisement, marketing, sidebar, widget
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -41,6 +41,9 @@ For any questions, error reports and suggestions please email support@mekshq.com
 3. Widget in action example
 
 == Changelog ==
+
+= 1.1.3 =
+* CSS fix to prevent issue with themes which don't assign widget classes properly
 
 = 1.1.2 =
 * Fixed small issue with rotating
