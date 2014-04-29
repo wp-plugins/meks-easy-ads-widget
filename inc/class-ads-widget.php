@@ -151,8 +151,8 @@ class MKS_Ads_Widget extends WP_Widget {
 				'title' => __('Advertisement', 'meks'),
 				'size' => 'large',
 				'num_per_view' => 1,
-				'rotate' => 1,
-				'randomize' => 1,
+				'rotate' => 0,
+				'randomize' => 0,
 				'ad_width' => '',
 				'ad_height' => '',
 				'ads' => array()
