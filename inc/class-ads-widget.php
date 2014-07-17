@@ -205,28 +205,30 @@ class MKS_Ads_Widget extends WP_Widget {
 		
 		
 	  <h4><?php _e('Ads', 'meks'); ?>:</h4>
-	  <div class="ads_container">
-	  <?php foreach($instance['ads'] as $ad) : ?>
-	  	<p>
-				<?php _e('Ad Image URL', 'meks'); ?>:
-				<input type="text" name="<?php echo $this->get_field_name( 'ad_img' ); ?>[]" value="<?php echo $ad['img']; ?>" class="widefat" />
-				<?php _e('Ad Link', 'meks'); ?>:
-				<input type="text" name="<?php echo $this->get_field_name( 'ad_link' ); ?>[]" value="<?php echo $ad['link']; ?>" class="widefat" />
-		  </p>
-	  <?php endforeach; ?>
-	 </div>
+	  <p>
+		  <ul class="mks_ads_container">
+		  <?php foreach($instance['ads'] as $ad) : ?>
+		  	<li style="margin-bottom: 15px;">
+					<label><?php _e('Ad Image URL', 'meks'); ?>:</label>
+					<input type="text" name="<?php echo $this->get_field_name( 'ad_img' ); ?>[]" value="<?php echo $ad['img']; ?>" class="widefat" />
+					<label><?php _e('Ad Link', 'meks'); ?>:</label>
+					<input type="text" name="<?php echo $this->get_field_name( 'ad_link' ); ?>[]" value="<?php echo $ad['link']; ?>" class="widefat" />
+			</li>
+		  <?php endforeach; ?>
+		 </ul>
+	  </p>
 	  
 	  <p>
 	  	<a href="#" class="mks_add_ad button"><?php _e('Add New', 'meks'); ?></a>
 	  </p>
 	  
 		<div class="mks_ads_clone" style="display:none">
-	  	<p>
-				<?php _e('Ad Image URL', 'meks'); ?>:
+	  	<li style="margin-bottom: 15px;">
+				<label><?php _e('Ad Image URL', 'meks'); ?>:</label>
 				<input type="text" name="<?php echo $this->get_field_name( 'ad_img' ); ?>[]" class="widefat" />
-				<?php _e('Ad Link URL', 'meks'); ?>:
+				<label><?php _e('Ad Link URL', 'meks'); ?>:</label>
 				<input type="text" name="<?php echo $this->get_field_name( 'ad_link' ); ?>[]" class="widefat" />
-		  </p>
+		 </li>
 	  </div>
 	  
 	<?php

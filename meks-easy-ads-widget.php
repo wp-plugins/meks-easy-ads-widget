@@ -2,9 +2,9 @@
 /*
 Plugin Name: Meks Easy Ads Widget
 Plugin URI: http://mekshq.com
-Description: Display unlimited number of ads inside your WordPress widget. Flexible options - pick your ads size, randomize, rotate, enjoy!
+Description: Display unlimited number of ads inside your WordPress widget. Specify custom ads size, randomize, rotate, enjoy!
 Author: MeksHQ
-Version: 1.1.3
+Version: 1.1.4
 Author URI: http://mekshq.com
 */
 
@@ -28,7 +28,7 @@ Author URI: http://mekshq.com
 
 define ('MKS_ADS_WIDGET_URL', trailingslashit(plugin_dir_url(__FILE__)));
 define ('MKS_ADS_WIDGET_DIR', trailingslashit(plugin_dir_path(__FILE__)));
-define ('MKS_ADS_WIDGET_VER', '1.1.3');
+define ('MKS_ADS_WIDGET_VER', '1.1.4');
 
 /* Initialize Widget */
 if(!function_exists('mks_ads_widget_init')):
