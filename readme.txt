@@ -43,7 +43,7 @@ For any questions, error reports and suggestions please email support@mekshq.com
 == Changelog ==
 
 = 1.1.4 =
-* Fixed isse with "Add New" button not working on specific OS/Browser configurations
+* Fixed issue with "Add New" button not working on specific OS/Browser configurations
 
 = 1.1.3 =
 * CSS fix to prevent issue with themes which don't assign widget classes properly
