@@ -4,7 +4,7 @@ Donate link: http://mekshq.com/
 Tags: ad, ads, affiliate, niche, advertising, advertisement, marketing, sidebar, widget
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -41,6 +41,9 @@ For any questions, error reports and suggestions please email support@mekshq.com
 3. Widget in action example
 
 == Changelog ==
+
+= 1.1.5 =
+* Full compatibility with new WordPress customizer in WP 3.9+
 
 = 1.1.4 =
 * Fixed issue with "Add New" button not working on specific OS/Browser configurations

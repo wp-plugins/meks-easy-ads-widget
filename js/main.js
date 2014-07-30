@@ -8,7 +8,7 @@
 				var widget_holder = $(this).closest('.widget-inside');
 				var cloner = widget_holder.find('.mks_ads_clone');
 				
-				widget_holder.find('.mks_ads_container').append(cloner.html());
+				widget_holder.find('.mks_ads_container').append('<li style="margin-bottom: 15px;">'+cloner.html()+'</li>');
 				
 			});
 			

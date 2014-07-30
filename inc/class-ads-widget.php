@@ -5,6 +5,8 @@
 
 class MKS_Ads_Widget extends WP_Widget { 
 
+	var $defaults;
+
 	function MKS_Ads_Widget() {
 		$widget_ops = array( 'classname' => 'mks_ads_widget', 'description' => __('You can place advertisement links with images here', 'meks') );
 		$control_ops = array( 'id_base' => 'mks_ads_widget' );
@@ -12,34 +14,47 @@ class MKS_Ads_Widget extends WP_Widget {
 
 		add_action( 'wp_enqueue_scripts', array($this,'enqueue_scripts'));
 		add_action( 'admin_enqueue_scripts', array($this,'enqueue_admin_scripts'));
+
+		
+		$this->defaults = array( 
+				'title' => __('Advertisement', 'meks'),
+				'size' => 'large',
+				'num_per_view' => 1,
+				'rotate' => 0,
+				'randomize' => 0,
+				'ad_width' => '',
+				'ad_height' => '',
+				'ads' => array()
+		);
 		
 	}
   
-  function enqueue_scripts(){
- 		wp_register_style( 'meks-ads-widget', MKS_ADS_WIDGET_URL.'css/style.css', false, MKS_ADS_WIDGET_VER );
-    wp_enqueue_style( 'meks-ads-widget' );
-  }
+	function enqueue_scripts(){
+    	wp_register_style( 'meks-ads-widget', MKS_ADS_WIDGET_URL.'css/style.css', false, MKS_ADS_WIDGET_VER );
+    	wp_enqueue_style( 'meks-ads-widget' );
+    }
   
-  function enqueue_admin_scripts(){
-			wp_enqueue_script( 'meks-ads-widget-js', MKS_ADS_WIDGET_URL.'js/main.js', array( 'jquery'), MKS_ADS_WIDGET_VER );	
-  }
+  	function enqueue_admin_scripts(){
+		wp_enqueue_script( 'meks-ads-widget-js', MKS_ADS_WIDGET_URL.'js/main.js', array( 'jquery'), MKS_ADS_WIDGET_VER );	
+  	}
   
 	
 	function widget( $args, $instance ) {
-		extract( $args );
 		
+		$instance = wp_parse_args( (array) $instance, $this->defaults );	
+		extract( $args );	
 		$title = apply_filters('widget_title', $instance['title'] );
 		
-		echo $before_widget;
-
+		echo $before_widget;	
 		if ( !empty($title) ) {
 			echo $before_title . $title . $after_title;
 		}
 		?>
-		
+			
 		<?php if(!empty($instance['ads'])) : ?>
 			
 			<?php
+
 				if($instance['randomize']){
 					shuffle($instance['ads']);
 				}
@@ -53,67 +68,70 @@ class MKS_Ads_Widget extends WP_Widget {
 				} else {
 					$ad_size = '';
 				}
+
 			?>
 			
 			
 			<ul class="mks_adswidget_ul <?php echo $instance['size'];?>">
-	     <?php foreach($instance['ads'] as $ind => $ad) : ?>
-	     	<li data-showind="<?php echo $show_ind; ?>"><a href="<?php echo $ad['link'];?>" target="_blank"><img src="<?php echo $ad['img'];?>" <?php echo $ad_size; ?>/></a></li>
-	     	<?php 
-	     		if( !(($ind+1) % $instance['num_per_view'])){
-	     			$show_ind++;
-	     		}
-	     	?>
-	     <?php endforeach; ?>
-	    </ul>
+	     		<?php foreach($instance['ads'] as $ind => $ad) : ?>
+	     		<li data-showind="<?php echo $show_ind; ?>"><a href="<?php echo $ad['link'];?>" target="_blank"><img src="<?php echo $ad['img'];?>" <?php echo $ad_size; ?>/></a></li>
+	     		<?php 
+	     			if( !(($ind+1) % $instance['num_per_view'])){
+	     				$show_ind++;
+	     			}
+	     		?>
+	     		<?php endforeach; ?>
+	    	</ul>
 	    
 	    <?php 
 	    
-	    if(count($instance['ads']) % $instance['num_per_view']){
-	    	$show_ind++;
-	    }
-	    
+	    	if(count($instance['ads']) % $instance['num_per_view']){
+	    		$show_ind++;
+	    	}
 	    
 	    ?>
 	  
-	  <?php if($instance['rotate']) : 
-	   $widget_id = $this->id;
-	   $slide_func_id = str_replace("-","",$this->id);
-	   $li_ind = 'li_ind_'.$slide_func_id;
-	  ?>
-	  	<script type="text/javascript">
-			/* <![CDATA[ */
-			var <?php echo $li_ind; ?> = 0;
-			(function($) {
-			  
-			  $(document).ready(function(){
-			  	slide_ads_<?php echo $slide_func_id; ?>();
-			  });
-         
-			})(jQuery);
-			
-			function slide_ads_<?php echo str_replace("-","",$this->id); ?>(){
+	  	<?php if($instance['rotate']) : 
+	   		$widget_id = $this->id;
+	  		$slide_func_id = str_replace("-","",$this->id);
+	  	 	$li_ind = 'li_ind_'.$slide_func_id;
+	  	?>
+
+		  	<script type="text/javascript">
+				/* <![CDATA[ */
+				var <?php echo $li_ind; ?> = 0;
+				(function($) {
+				  
+				  $(document).ready(function(){
+				  	slide_ads_<?php echo $slide_func_id; ?>();
+				  });
+	   	     
+				})(jQuery);
 				
-				jQuery("#<?php echo $widget_id; ?> ul li").hide();
-				jQuery("#<?php echo $widget_id; ?> ul li[data-showind='"+<?php echo $li_ind; ?>+"']").fadeIn(500);
-				<?php echo $li_ind; ?>++;
-				
-				if(<?php echo $li_ind; ?> > <?php echo ($show_ind - 1);?>){
-				 <?php echo $li_ind; ?> = 0;
+				function slide_ads_<?php echo str_replace("-","",$this->id); ?>(){
+					
+					jQuery("#<?php echo $widget_id; ?> ul li").hide();
+					jQuery("#<?php echo $widget_id; ?> ul li[data-showind='"+<?php echo $li_ind; ?>+"']").fadeIn(500);
+					<?php echo $li_ind; ?>++;
+					
+					if(<?php echo $li_ind; ?> > <?php echo ($show_ind - 1);?>){
+					 <?php echo $li_ind; ?> = 0;
+					}
+					
+					
+					
+					//alert(<?php echo $li_ind; ?>);
+					
+					
+				 	setTimeout('slide_ads_<?php echo $slide_func_id; ?>()', 5000);
 				}
-				
-				
-				
-				//alert(<?php echo $li_ind; ?>);
-				
-				
-			 	setTimeout('slide_ads_<?php echo $slide_func_id; ?>()', 5000);
-			}
-			/* ]]> */
+				/* ]]> */
 			</script>
-	  <?php endif; ?>
+			
+	 	<?php endif; ?>
 	  
-    <?php endif; ?>
+    	<?php endif; ?>
+
 		<?php
 		
 		echo $after_widget;
@@ -121,6 +139,7 @@ class MKS_Ads_Widget extends WP_Widget {
 
 	
 	function update( $new_instance, $old_instance ) {
+
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['size'] = $new_instance['size'];
@@ -147,20 +166,7 @@ class MKS_Ads_Widget extends WP_Widget {
 
 	function form( $instance ) {
 
-		$defaults = array( 
-				'title' => __('Advertisement', 'meks'),
-				'size' => 'large',
-				'num_per_view' => 1,
-				'rotate' => 0,
-				'randomize' => 0,
-				'ad_width' => '',
-				'ad_height' => '',
-				'ads' => array()
-			);
-			
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
-		
-		
+		$instance = wp_parse_args( (array) $instance, $this->defaults ); ?>
 		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title', 'meks'); ?>:</label>
@@ -223,12 +229,10 @@ class MKS_Ads_Widget extends WP_Widget {
 	  </p>
 	  
 		<div class="mks_ads_clone" style="display:none">
-	  	<li style="margin-bottom: 15px;">
-				<label><?php _e('Ad Image URL', 'meks'); ?>:</label>
-				<input type="text" name="<?php echo $this->get_field_name( 'ad_img' ); ?>[]" class="widefat" />
-				<label><?php _e('Ad Link URL', 'meks'); ?>:</label>
-				<input type="text" name="<?php echo $this->get_field_name( 'ad_link' ); ?>[]" class="widefat" />
-		 </li>
+			<label><?php _e('Ad Image URL', 'meks'); ?>:</label>
+			<input type="text" name="<?php echo $this->get_field_name( 'ad_img' ); ?>[]" class="widefat" />
+			<label><?php _e('Ad Link URL', 'meks'); ?>:</label>
+			<input type="text" name="<?php echo $this->get_field_name( 'ad_link' ); ?>[]" class="widefat" />
 	  </div>
 	  
 	<?php
