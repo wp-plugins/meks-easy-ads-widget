@@ -24,6 +24,12 @@ With this plugin you can create unlimited number of ads inside your WordPress wi
 
 Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_blank">MeksHQ</a>
 
+### Live preview?
+
+You can see Meks Easy Ads Widget example on our <a href="http://mekshq.com/demo/throne" target="_blank">Throne theme demo website</a>
+
+
+
 == Installation ==
 
 1. Upload meks-easy-ads-widget.zip to plugins via WordPress admin panel or upload unzipped folder to your wp-content/plugins/ folder
