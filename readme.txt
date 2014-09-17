@@ -26,7 +26,7 @@ Meks Easy Ads Widget plugin is created by <a href="http://mekshq.com" target="_b
 
 ### Live preview?
 
-You can see Meks Easy Ads Widget example on our <a href="http://mekshq.com/demo/throne" target="_blank">Throne theme demo website</a>
+You can see Meks Easy Ads Widget live example on our <a href="http://mekshq.com/demo/throne" target="_blank">Throne theme demo website</a>
 
 
 
