@@ -26,6 +26,9 @@ class MKS_Ads_Widget extends WP_Widget {
 				'ad_height' => '',
 				'ads' => array()
 		);
+
+		//Allow themes or plugins to modify default parameters
+		$this->defaults = apply_filters('mks_ads_widget_modify_defaults', $this->defaults);
 		
 	}
   
