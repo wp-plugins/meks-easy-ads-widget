@@ -77,7 +77,7 @@ class MKS_Ads_Widget extends WP_Widget {
 			
 			<ul class="mks_adswidget_ul <?php echo $instance['size'];?>">
 	     		<?php foreach($instance['ads'] as $ind => $ad) : ?>
-	     		<li data-showind="<?php echo $show_ind; ?>"><a href="<?php echo $ad['link'];?>" target="_blank"><img src="<?php echo $ad['img'];?>" <?php echo $ad_size; ?>/></a></li>
+	     		<li data-showind="<?php echo $show_ind; ?>"><a href="<?php echo $ad['link'];?>" target="_blank"><img src="<?php echo $ad['img'];?>" alt="<?php echo esc_attr(basename($ad['img'])); ?>" <?php echo $ad_size; ?>/></a></li>
 	     		<?php 
 	     			if( !(($ind+1) % $instance['num_per_view'])){
 	     				$show_ind++;
